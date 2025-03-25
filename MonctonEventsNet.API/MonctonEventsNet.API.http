@@ -1,0 +1,6 @@
+@MonctonEventsNet.API_HostAddress = http://localhost:5172
+
+GET {{MonctonEventsNet.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

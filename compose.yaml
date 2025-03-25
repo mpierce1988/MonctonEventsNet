@@ -1,0 +1,6 @@
+﻿services:
+  monctoneventsnet.api:
+    image: monctoneventsnet.api
+    build:
+      context: .
+      dockerfile: MonctonEventsNet.API/Dockerfile
