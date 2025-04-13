@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace MonctonEventsNet.Application.Event;
 
 public class EventService : IEventService
@@ -5,14 +7,18 @@ public class EventService : IEventService
     #region Private Fields
     
     private readonly IEventRepository _repository;
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly string? _eventsGoogleFormsUrl;
     
     #endregion
     
     #region Constructor
     
-    public EventService(IEventRepository repository)
+    public EventService(IEventRepository repository, IHttpClientFactory httpClientFactory, IConfiguration configuration)
     {
         _repository = repository;
+        _httpClientFactory = httpClientFactory;
+        _eventsGoogleFormsUrl = configuration["EventsGoogleFormsUrl"];
     }
     
     #endregion
@@ -34,7 +40,7 @@ public class EventService : IEventService
         }
         catch (Exception e)
         {
-            return new Error("500", e.Message);
+            return Error.UncaughtError(e.Message);
         }
     }
 
@@ -50,9 +56,40 @@ public class EventService : IEventService
         }
         catch (Exception e)
         {
-            return new Error("500", e.Message);
+            return Error.UncaughtError(e.Message);
         }
     }
-    
+
+    public async Task<Result<RefreshEventsResponse, Error>> RefreshEventsAsync()
+    {
+        try
+        {
+            // Download file from web
+            HttpClient client = _httpClientFactory.CreateClient();
+
+            if (string.IsNullOrEmpty(_eventsGoogleFormsUrl))
+                return EventErrors.EventUrlNotConfigured();
+
+            HttpResponseMessage response = await client.GetAsync(_eventsGoogleFormsUrl);
+
+            response.EnsureSuccessStatusCode();
+
+            // Parse file using Excel Service
+
+            // Save to database using repository
+
+            // Populate results 
+            throw new NotImplementedException();
+        }
+        catch (HttpRequestException e)
+        {
+            return Error.UncaughtError(string.Concat("Error downloading file at URL: ", _eventsGoogleFormsUrl, " with HTTP error message: ", e.Message));
+        }
+        catch (Exception e)
+        {
+            return Error.UncaughtError(e.Message);
+        }
+    }
+
     #endregion
 }

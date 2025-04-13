@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonctonEventsNet.Applicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonctonEventsNet.Infrastructure", "MonctonEventsNet.Infrastructure\MonctonEventsNet.Infrastructure.csproj", "{5F58D942-5242-44F1-B079-845D90E72A1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonctonEventsNet.Application.EpPlus", "MonctonEventsNet.Application.EpPlus\MonctonEventsNet.Application.EpPlus.csproj", "{B292AB28-BCA6-4C6E-B420-6B253E157C29}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,5 +37,9 @@ Global
 		{5F58D942-5242-44F1-B079-845D90E72A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F58D942-5242-44F1-B079-845D90E72A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F58D942-5242-44F1-B079-845D90E72A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B292AB28-BCA6-4C6E-B420-6B253E157C29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B292AB28-BCA6-4C6E-B420-6B253E157C29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B292AB28-BCA6-4C6E-B420-6B253E157C29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B292AB28-BCA6-4C6E-B420-6B253E157C29}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
