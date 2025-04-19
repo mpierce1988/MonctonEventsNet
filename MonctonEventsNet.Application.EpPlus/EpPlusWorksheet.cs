@@ -1,5 +1,6 @@
 using MonctonEventsNet.Application.Excel;
 using OfficeOpenXml;
+using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
 namespace MonctonEventsNet.Application.EpPlus;
 
@@ -34,7 +35,7 @@ public class EpPlusWorksheet : IWorksheet
     /// Gets the total number of columns in the worksheet.
     /// </summary>
     public int ColumnCount => _worksheet.Dimension?.Columns ?? 0;
-    
+
     public IEnumerable<IRow> Rows => _worksheet.Rows.Select(row => new EpPlusRow(_worksheet, row.StartRow));
 
     #endregion
@@ -83,6 +84,22 @@ public class EpPlusWorksheet : IWorksheet
             throw new ArgumentNullException(nameof(address), "Address cannot be null or empty.");
 
         return new EpPlusCell(_worksheet.Cells[address]);
+    }
+
+    /// <summary>
+    /// Retrieves a specific row from the worksheet.
+    /// </summary>
+    /// <param name="row">The row number to retrieve. Must be between 1 and the total number of rows in the worksheet.</param>
+    /// <returns>An <see cref="IRow"/> object representing the specified row.</returns>
+    /// <exception cref="ArgumentOutOfRangeException">
+    /// Thrown when the specified row number is less than 1 or greater than the total number of rows in the worksheet.
+    /// </exception>
+    public IRow GetRow(int row)
+    {
+        if (row <= 0 || row > RowCount)
+            throw new ArgumentOutOfRangeException(nameof(row), "Row number must be between 1 and " + RowCount);
+
+        return new EpPlusRow(_worksheet, row);
     }
 
     /// <summary>

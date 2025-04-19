@@ -82,4 +82,26 @@ public class EpPlusSpreadsheetReaderServiceTests
         Assert.Equal(fourthCellDataType, firstDataRow.GetCell(4).DataType);
         Assert.Equal(fifthCellDataType, firstDataRow.GetCell(5).DataType);
     }
+
+    [Fact]
+    public async Task ReadAsync_ContainsHyperlink_ReturnsHyperlink()
+    {
+        // Assert
+        FileStream fileStream = new FileStream(_basicExcelFileName, FileMode.Open, FileAccess.Read);
+        string expectedFirstHyperlink = "http://www.google.ca/";
+        string expectedSecondHyperlink = "http://www.youtube.com/";
+        
+        // Act
+        IWorkbook workbook = await _spreadsheetReaderService.ReadAsync(fileStream);
+        
+        // Assert
+        Assert.NotNull(workbook);
+        Assert.NotEmpty(workbook.Worksheets);
+        IWorksheet worksheet = workbook.Worksheets.First();
+        Assert.NotEmpty(worksheet.GetRows(1));
+        IRow firstDataRow = worksheet.GetRows(2, 2).First();
+        Assert.Equal(expectedFirstHyperlink, firstDataRow.GetCell(6).GetHyperlink());
+        IRow secondDataRow = worksheet.GetRows(3, 3).First();
+        Assert.Equal(expectedSecondHyperlink, secondDataRow.GetCell(6).GetHyperlink());
+    }
 }

@@ -18,6 +18,7 @@ public interface IWorksheet
     ICell? GetCell(int row, int column);
     ICell? GetCell(string address);
     IEnumerable<IRow> GetRows(int startRow, int? endRow = null);
+    IRow GetRow(int row);
     int RowCount { get; }
     int ColumnCount { get; }
 }
@@ -35,6 +36,8 @@ public interface ICell
     object? Value { get; }
     T? GetValue<T>();
     bool TryGetValue<T>(out T? value);
+
+    string? GetHyperlink();
     CellDataType DataType { get; }
 }
 

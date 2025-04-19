@@ -5,5 +5,11 @@
     &lt;TestId&gt;xUnit::8C9D4628-9FBF-4895-85FE-588426E69DFC::net9.0::MonctonEventsNet.Application.EpPlus.Test.EpPlusSpreadsheetReaderServiceTests.ReadAsync_ValidHeaders_ReturnsCorrectHeaders&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::8C9D4628-9FBF-4895-85FE-588426E69DFC::net9.0::MonctonEventsNet.Application.EpPlus.Test.EpPlusSpreadsheetReaderServiceTests.ReadAsync_ThreeRows_ReturnsTwoRows&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::8C9D4628-9FBF-4895-85FE-588426E69DFC::net9.0::MonctonEventsNet.Application.EpPlus.Test.EpPlusSpreadsheetReaderServiceTests.ReadAsync_MultipleDataTypes_ReturnsCorrectDataTypes&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::8C9D4628-9FBF-4895-85FE-588426E69DFC::net9.0::MonctonEventsNet.Application.EpPlus.Test.EpPlusSpreadsheetReaderServiceTests.ReadAsync_ContainsHyperlink_ReturnsHyperlink&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_Free_ReturnsFreeCost&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_EmptyString_ReturnsDefaultCost&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_SingleValue_ReturnsMinCost&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_DoubleValue_ReturnsMinMaxCost&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_SingleValueWithText_ReturnsMinCostInformation&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

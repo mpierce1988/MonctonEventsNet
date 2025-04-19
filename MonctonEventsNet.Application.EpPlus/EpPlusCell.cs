@@ -33,6 +33,15 @@ public class EpPlusCell : ICell
     /// </summary>
     public object? Value => _cell?.Value;
 
+    public string? GetHyperlink()
+    {
+        if (_cell == null) return null;
+
+        if (_cell.Hyperlink != null) return _cell.Hyperlink.OriginalString;
+
+        return null;
+    }
+
     /// <summary>
     /// Gets the data type of the cell's value.
     /// </summary>

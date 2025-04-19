@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonctonEventsNet.Applicatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{686BF722-3DD9-42B8-83E1-3B490CF59BEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonctonEventsNet.Application.Tests", "MonctonEventsNet.Application.Tests\MonctonEventsNet.Application.Tests.csproj", "{09BD5194-4CE0-429A-BFFE-890BC18C4483}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,8 +51,13 @@ Global
 		{8C9D4628-9FBF-4895-85FE-588426E69DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C9D4628-9FBF-4895-85FE-588426E69DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C9D4628-9FBF-4895-85FE-588426E69DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09BD5194-4CE0-429A-BFFE-890BC18C4483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BD5194-4CE0-429A-BFFE-890BC18C4483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BD5194-4CE0-429A-BFFE-890BC18C4483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BD5194-4CE0-429A-BFFE-890BC18C4483}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8C9D4628-9FBF-4895-85FE-588426E69DFC} = {686BF722-3DD9-42B8-83E1-3B490CF59BEA}
+		{09BD5194-4CE0-429A-BFFE-890BC18C4483} = {686BF722-3DD9-42B8-83E1-3B490CF59BEA}
 	EndGlobalSection
 EndGlobal
