@@ -1,5 +1,7 @@
+using System.Runtime.Serialization;
 using MonctonEventsNet.Application.Excel;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace MonctonEventsNet.Application.EpPlus;
 
@@ -15,6 +17,7 @@ public class EpPlusCell : ICell
     /// The underlying ExcelRange object representing the cell.
     /// </summary>
     private readonly ExcelRange? _cell;
+    private static string _generalFormat = "General";
 
     #endregion
 
@@ -44,14 +47,15 @@ public class EpPlusCell : ICell
             {
                 case string _:
                     return CellDataType.Text;
-                case double _:
+                case DateTime _:
+                    return CellDataType.Date;
+                case double val:
+                    return _cell.Style.Numberformat.Format == _generalFormat ? CellDataType.Number : CellDataType.Date;
                 case decimal _:
                 case int _:
                 case float _:
                 case long _:
                     return CellDataType.Number;
-                case DateTime _:
-                    return CellDataType.Date;
                 case bool _:
                     return CellDataType.Boolean;
                 case ExcelErrorValue _:

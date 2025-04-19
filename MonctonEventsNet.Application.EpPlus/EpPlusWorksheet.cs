@@ -34,6 +34,8 @@ public class EpPlusWorksheet : IWorksheet
     /// Gets the total number of columns in the worksheet.
     /// </summary>
     public int ColumnCount => _worksheet.Dimension?.Columns ?? 0;
+    
+    public IEnumerable<IRow> Rows => _worksheet.Rows.Select(row => new EpPlusRow(_worksheet, row.StartRow));
 
     #endregion
 
