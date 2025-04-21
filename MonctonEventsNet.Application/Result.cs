@@ -14,7 +14,7 @@ public readonly struct Result<TValue, TError>
 
     private Result(TError error)
     {
-        IsError = false;
+        IsError = true;
         _value = default;
         _error = error;
     }

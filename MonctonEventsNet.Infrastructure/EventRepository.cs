@@ -37,10 +37,41 @@ public class EventRepository : IEventRepository
             query = query.Where(ev => ev.DateTime <= getEventsQuery.MaxDate);
         }
 
+        if (getEventsQuery.EventTypeId.HasValue)
+        {
+            query = query.Where(ev => ev.EventTypeId == getEventsQuery.EventTypeId.Value);
+        }
+
+        if (getEventsQuery.VenueId.HasValue)
+        {
+            query = query.Where(ev => ev.VenueId == getEventsQuery.VenueId.Value);
+        }
+
+        if (getEventsQuery.MinCost.HasValue)
+        {
+            query = query.Where(ev => 
+                ev.Cost != null && ev.Cost.MinCost >= getEventsQuery.MinCost.Value 
+                                && (ev.Cost.MaxCost == null || ev.Cost.MaxCost >= getEventsQuery.MinCost.Value)
+                                );
+        }
+        
+        if (getEventsQuery.MaxCost.HasValue)
+        {
+            query = query.Where(ev => 
+                ev.Cost != null && ev.Cost.MinCost <= getEventsQuery.MaxCost.Value 
+                                && (ev.Cost.MaxCost == null || ev.Cost.MaxCost <= getEventsQuery.MaxCost.Value)
+                                );
+        }
+
+        if (getEventsQuery.SearchText != null)
+        {
+            query = query.Where(ev => ev.Information.Contains(getEventsQuery.SearchText.ToLower()));
+        }
+
         return await query.ToListAsync();
     }
     
-    public async Task<Event?> GetEventAsync(int eventId)
+    public async Task<Event?> GetEventAsync(Guid eventId)
     {
         return await _context.Events.FindAsync(eventId);
     }
@@ -124,6 +155,11 @@ public class EventRepository : IEventRepository
         return eventType;
     }
     
+    public async Task<List<EventType>> GetEventTypesAsync()
+    {
+        return await _context.EventTypes.AsNoTracking().ToListAsync();
+    }
+    
     #endregion
     
     #region Venue Public Methods
@@ -144,6 +180,11 @@ public class EventRepository : IEventRepository
         }
 
         return venue;
+    }
+
+    public async Task<List<Venue>> GetVenuesAsync()
+    {
+        return await _context.Venues.AsNoTracking().ToListAsync();
     }
     
     #endregion

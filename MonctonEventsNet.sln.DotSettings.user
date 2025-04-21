@@ -11,5 +11,14 @@
     &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_SingleValue_ReturnsMinCost&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_DoubleValue_ReturnsMinMaxCost&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::09BD5194-4CE0-429A-BFFE-890BC18C4483::net9.0::MonctonEventsNet.Application.Tests.ParserUtilityTests.ParseCost_SingleValueWithText_ReturnsMinCostInformation&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_EmptyQuery_ReturnsAllResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_MinDate_ReturnsFilteredResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_MaxDate_ReturnsFilteredResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_EventType_ReturnsFilteredResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_Venue_ReturnsFilteredResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_MinCost_ReturnsFilteredResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventsAsync_MaxCost_ReturnsFilteredResults&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventAsync_ValidId_ReturnsEvent&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::E4273F4A-8EBA-4E0A-832F-43401FCFECC5::net9.0::MonctonEventsNet.Application.Tests.Integration.EventServiceTests.GetEventAsync_InvalidId_ReturnsError&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

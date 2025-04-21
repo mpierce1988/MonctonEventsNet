@@ -1,6 +1,16 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace MonctonEventsNet.Application.Event;
 
 public class GetEventQuery
 {
-    public int EventId { get; set; }
+    [Required]
+    public Guid EventId { get; set; }
+    
+    public GetEventQuery() {}
+    
+    public GetEventQuery(Guid eventId)
+    {
+        EventId = eventId;
+    }
 }

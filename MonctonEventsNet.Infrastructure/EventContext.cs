@@ -6,12 +6,6 @@ namespace MonctonEventsNet.Infrastructure;
 
 public class EventContext : DbContext
 {
-    #region Private Fields
-    
-    private readonly string _dataSource;
-
-    #endregion
-    
     #region DbSets
     
     public DbSet<Event> Events { get; set; }
@@ -23,15 +17,11 @@ public class EventContext : DbContext
     
     #region Constructor
     
-    public EventContext(IConfiguration configuration)
-    {
-        _dataSource = configuration.GetValue<string>("DataSource") ?? throw new ArgumentException("DataSource is not set in the configuration.");
-    }
+    public EventContext(DbContextOptions<EventContext> options) : base(options) {}
     
     #endregion
     
     #region Overrides
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         base.OnConfiguring(optionsBuilder);

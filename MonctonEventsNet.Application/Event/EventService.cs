@@ -37,7 +37,8 @@ public class EventService : IEventService
         {
             List<Model.Event> events = await _repository.GetEventsAsync(getEventsQuery);
 
-            if (!events.Any()) return EventErrors.EventsNotFound();
+            if (!events.Any())
+                return new GetEventsResponse();
 
             return new GetEventsResponse()
             {
@@ -76,6 +77,34 @@ public class EventService : IEventService
             List<Model.Event> events = await ParseFileResult(fileResult);
 
             return await _repository.BulkUpsertAsync(events);
+        }
+        catch (Exception e)
+        {
+            return Error.UncaughtError(e.Message);
+        }
+    }
+
+    public async Task<Result<List<Venue>, Error>> GetVenuesAsync()
+    {
+        try
+        {
+            List<Venue> venues = await _repository.GetVenuesAsync();
+
+            return venues;
+        }
+        catch (Exception e)
+        {
+            return Error.UncaughtError(e.Message);
+        }
+    }
+
+    public async Task<Result<List<EventType>, Error>> GetEventTypesAsync()
+    {
+        try
+        {
+            List<EventType> eventTypes = await _repository.GetEventTypesAsync();
+
+            return eventTypes;
         }
         catch (Exception e)
         {
