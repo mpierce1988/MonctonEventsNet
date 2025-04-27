@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using MonctonEventsNet.Application.EpPlus;
 using MonctonEventsNet.Application.Event;
+using MonctonEventsNet.Application.Excel;
 using MonctonEventsNet.Application.FileProvider;
 using MonctonEventsNet.Infrastructure;
 using MonctonEventsNet.Model;
@@ -11,10 +13,15 @@ public class EventServiceTests
 {
     #region Private Fields
 
+    private readonly IEventRepository _repository;
     private readonly IEventService _service;
+    private readonly IFileProvider _fileProvider;
+    private readonly ISpreadsheetReaderService _spreadsheetReaderService;
     private readonly EventContext _context;
     private Venue _testVenueOne;
     private Model.Event _eventOne;
+
+    private const string _singlePageEventsFilePath = "Samples/SinglePageEvents.xlsx";
     
     #endregion
     
@@ -29,12 +36,15 @@ public class EventServiceTests
         IConfiguration configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
             .Build();
+
+        configuration["Test"] = "Test";
         
         _context = new EventContext(options);
-        IEventRepository eventRepository = new EventRepository(_context);
-        IFileProvider fileProvider = new LocalFileProvider(configuration);
+        _repository = new EventRepository(_context);
+        _fileProvider = new LocalFileProvider(configuration);
+        _spreadsheetReaderService = new EpPlusSpreadsheetReaderService();
 
-        _service = new EventService(eventRepository, fileProvider, configuration);
+        _service = new EventService(_repository, _fileProvider, _spreadsheetReaderService, configuration);
 
         _testVenueOne = new()
         {
@@ -240,6 +250,26 @@ public class EventServiceTests
         Assert.False(result.IsSuccess);
         Assert.NotNull(resultError);
         Assert.Equal(EventErrors.EventNotFound(eventId).Description, resultError.Description);
+    }
+    
+    #endregion
+    
+    #region RefreshEventsAsync Tests
+
+    [Fact]
+    public async Task RefreshEventsAsync_ValidFile_SavesEventsToDatabase()
+    {
+        // Arrange
+        int expectedNumEvents = 205;
+        
+        // Act
+        var result = await _service.RefreshEventsAsync();
+        RefreshEventsResponse? resultEvents = result.Match<RefreshEventsResponse?>(success => success, failure => null);
+        
+        // Assert
+        Assert.True(result.IsSuccess);
+        Assert.NotNull(resultEvents);
+        Assert.Equivalent(expectedNumEvents, resultEvents.NumCreated);
     }
     
     #endregion

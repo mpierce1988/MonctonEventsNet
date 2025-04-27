@@ -21,6 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MonctonEventsNet.Application.EpPlus\MonctonEventsNet.Application.EpPlus.csproj" />
       <ProjectReference Include="..\MonctonEventsNet.Application\MonctonEventsNet.Application.csproj" />
       <ProjectReference Include="..\MonctonEventsNet.Infrastructure\MonctonEventsNet.Infrastructure.csproj" />
     </ItemGroup>
@@ -29,6 +30,13 @@
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="Samples\SinglePageEvents.xlsx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Samples\" />
     </ItemGroup>
 
 </Project>

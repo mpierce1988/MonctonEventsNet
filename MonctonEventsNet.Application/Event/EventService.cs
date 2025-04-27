@@ -20,11 +20,13 @@ public class EventService : IEventService
     
     #region Constructor
     
-    public EventService(IEventRepository repository, IFileProvider fileProvider, IConfiguration configuration)
+    public EventService(IEventRepository repository, IFileProvider fileProvider, ISpreadsheetReaderService spreadsheetReaderService, 
+        IConfiguration configuration)
     {
         _repository = repository;
         _fileProvider = fileProvider;
         _eventsGoogleFormsUrl = configuration["EventsGoogleFormsUrl"];
+        _spreadsheetReaderService = spreadsheetReaderService;
     }
     
     #endregion
@@ -199,10 +201,10 @@ public class EventService : IEventService
         if (string.IsNullOrEmpty(eventTimeString))
         {
             // If no time is provided, just parse the date
-            return DateTime.ParseExact(eventDateString, "MMMM d, yyyy", CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(eventDateString, "MMM d, yyyy", CultureInfo.InvariantCulture);
         }
         
-        DateTime date = DateTime.ParseExact(eventDateString, "MMMM d, yyyy", CultureInfo.InvariantCulture);
+        DateTime date = DateTime.ParseExact(eventDateString, "MMM d, yyyy", CultureInfo.InvariantCulture);
         DateTime time = DateTime.ParseExact(eventTimeString, "h:mmm tt", CultureInfo.InvariantCulture);
 
         return new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
