@@ -1,6 +1,11 @@
 @MonctonEventsNet.API_HostAddress = http://localhost:5172
 
-GET {{MonctonEventsNet.API_HostAddress}}/weatherforecast/
+GET http://localhost:5172/api/Event/
 Accept: application/json
 
 ###
+
+### Get Event by ID
+### 000ccbe2-da28-4f62-bf80-f2577cb819fc
+GET http://localhost:5172/api/Event/000ccbe2-da28-4f62-bf80-f2577cb819fc
+Accept: application/json

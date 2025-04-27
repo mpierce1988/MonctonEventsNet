@@ -265,11 +265,17 @@ public class EventServiceTests
         // Act
         var result = await _service.RefreshEventsAsync();
         RefreshEventsResponse? resultEvents = result.Match<RefreshEventsResponse?>(success => success, failure => null);
+
+        var resultsFromDb = await _service.GetEventsAsync(new());
+        var eventsFromDb = resultsFromDb.Match<GetEventsResponse?>(success => success, failure => null);
         
         // Assert
         Assert.True(result.IsSuccess);
         Assert.NotNull(resultEvents);
         Assert.Equivalent(expectedNumEvents, resultEvents.NumCreated);
+        Assert.True(resultsFromDb.IsSuccess);
+        Assert.NotNull(eventsFromDb);
+        Assert.Equal(expectedNumEvents, eventsFromDb.Events.Count);
     }
     
     #endregion

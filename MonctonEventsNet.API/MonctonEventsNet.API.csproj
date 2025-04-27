@@ -9,6 +9,10 @@
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
@@ -18,8 +22,19 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\MonctonEventsNet.Application.EpPlus\MonctonEventsNet.Application.EpPlus.csproj" />
       <ProjectReference Include="..\MonctonEventsNet.Application\MonctonEventsNet.Application.csproj" />
       <ProjectReference Include="..\MonctonEventsNet.Infrastructure\MonctonEventsNet.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Data\What's Happening in Greater Moncton.xlsx">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

@@ -135,8 +135,8 @@ public class EventService : IEventService
         {
             // Parse the worksheet name into a date
             DateTime date;
-            if (!DateTime.TryParse(sheet.Name, out date))
-                throw new ArgumentException($"Invalid worksheet name: {sheet.Name}");
+            //if (!DateTime.TryParse(sheet.Name, out date))
+            //    throw new ArgumentException($"Invalid worksheet name: {sheet.Name}");
             
             // Loop through each row in the worksheet, skipping the header row
             for (int rowIndex = 2; rowIndex <= sheet.RowCount; rowIndex++)
@@ -197,17 +197,24 @@ public class EventService : IEventService
 
     private DateTime ParseEventDateTime(string? eventDateString, string? eventTimeString)
     {
-        if(eventDateString is null) throw new ArgumentNullException(nameof(eventDateString));
-        if (string.IsNullOrEmpty(eventTimeString))
+        try
         {
-            // If no time is provided, just parse the date
-            return DateTime.ParseExact(eventDateString, "MMM d, yyyy", CultureInfo.InvariantCulture);
-        }
-        
-        DateTime date = DateTime.ParseExact(eventDateString, "MMM d, yyyy", CultureInfo.InvariantCulture);
-        DateTime time = DateTime.ParseExact(eventTimeString, "h:mmm tt", CultureInfo.InvariantCulture);
+            if (eventDateString is null) throw new ArgumentNullException(nameof(eventDateString));
+            if (string.IsNullOrEmpty(eventTimeString))
+            {
+                // If no time is provided, just parse the date
+                return DateTime.ParseExact(eventDateString, "MMM d, yyyy", CultureInfo.InvariantCulture);
+            }
 
-        return new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
+            DateTime date = DateTime.ParseExact(eventDateString, "MMM d, yyyy", CultureInfo.InvariantCulture);
+            DateTime time = DateTime.ParseExact(eventTimeString, "h:mmm tt", CultureInfo.InvariantCulture);
+
+            return new DateTime(date.Year, date.Month, date.Day, time.Hour, time.Minute, 0);
+        }
+        catch (Exception e)
+        {
+            return new DateTime();
+        }
     }
 
     #endregion

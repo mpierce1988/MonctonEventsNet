@@ -25,7 +25,10 @@ public class EventRepository : IEventRepository
     
     public async Task<List<Event>> GetEventsAsync(GetEventsQuery getEventsQuery)
     {
-        IQueryable<Event> query = _context.Events;
+        IQueryable<Event> query = _context.Events
+            .Include(ev => ev.EventType)
+            .Include(ev => ev.Venue)
+            .Include(ev => ev.Cost);
 
         if (getEventsQuery.MinDate.HasValue)
         {
@@ -73,7 +76,11 @@ public class EventRepository : IEventRepository
     
     public async Task<Event?> GetEventAsync(Guid eventId)
     {
-        return await _context.Events.FindAsync(eventId);
+        return await _context.Events
+            .Include(ev => ev.EventType)
+            .Include(ev => ev.Venue)
+            .Include(ev => ev.Cost)
+            .SingleOrDefaultAsync(ev => ev.EventId == eventId);
     }
     
     public async Task<RefreshEventsResponse> BulkUpsertAsync(List<Event> events)
