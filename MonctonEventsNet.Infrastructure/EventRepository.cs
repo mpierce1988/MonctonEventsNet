@@ -68,7 +68,8 @@ public class EventRepository : IEventRepository
 
         if (getEventsQuery.SearchText != null)
         {
-            query = query.Where(ev => ev.Information.Contains(getEventsQuery.SearchText.ToLower()));
+            string searchPattern = $"%{getEventsQuery.SearchText}%";
+            query = query.Where(ev => EF.Functions.Like(ev.Information, searchPattern));
         }
 
         return await query.ToListAsync();

@@ -1,11 +1,35 @@
 @MonctonEventsNet.API_HostAddress = http://localhost:5172
 
-GET http://localhost:5172/api/Event/
+GET http://localhost:5172/api/Events/
 Accept: application/json
 
-###
+### Get Events With Search Text
+GET http://localhost:5172/api/Events/?SearchText=fish
+Accept: application/json
+
+### Get Events with Search Text (Venue ID)
+GET http://localhost:5172/api/Events/?VenueId=d7a05ffe-12d9-47aa-83f5-d243c89155a3
+Accept: application/json
 
 ### Get Event by ID
 ### 000ccbe2-da28-4f62-bf80-f2577cb819fc
-GET http://localhost:5172/api/Event/000ccbe2-da28-4f62-bf80-f2577cb819fc
+GET http://localhost:5172/api/Events/fdb11fb0-993c-4379-8d61-578ef114100f
+Accept: application/json
+
+### Get Event by ID (Invalid ID)
+### 000ccbe2-da28-4f62-bf80-f2577cb819fc
+GET http://localhost:5172/api/Events/000ccbe2-da28-4f62-bf80-f2577cb834fc
+Accept: application/json
+
+### Get Event by ID (Invalid Format ID)
+### 000ccbe2-da28-4f62-bf80-f2577cb819fc
+GET http://localhost:5172/api/Events/test123testme
+Accept: application/json
+
+### Get Event Types
+GET http://localhost:5172/api/Events/types
+Accept: application/json
+
+### Get Venues
+GET http://localhost:5172/api/Events/venues
 Accept: application/json
